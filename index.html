@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For TI moon 🌙</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(135deg,#fff0f6,#ffffff);
+  height:100vh;
+  overflow:hidden;
+}
+
+/* soft floating dots */
+.dot{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:rgba(255,150,190,.6);
+  border-radius:50%;
+  animation:float 10s linear infinite;
+}
+@keyframes float{
+  from{transform:translateY(110vh);opacity:0}
+  20%{opacity:1}
+  to{transform:translateY(-10vh);opacity:0}
+}
+
+/* screens */
+.screen{
+  display:none;
+  height:100vh;
+  padding:20px;
+  text-align:center;
+}
+.screen.active{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+h1{
+  font-family:'Pacifico',cursive;
+  color:#e75480;
+  margin-bottom:10px;
+}
+p{color:#666;max-width:320px}
+
+button{
+  margin-top:25px;
+  padding:12px 30px;
+  border:none;
+  border-radius:30px;
+  background:#ff8fb1;
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+}
+
+/* cards */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+  max-width:340px;
+}
+
+.card{
+  width:150px;
+  height:170px;
+  perspective:1000px;
+}
+.card-inner{
+  width:100%;
+  height:100%;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:transform .7s ease;
+}
+.card.active .card-inner{
+  transform:rotateY(180deg);
+}
+
+.card-front,.card-back{
+  position:absolute;
+  width:100%;
+  height:100%;
+  border-radius:16px;
+  backface-visibility:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:10px;
+}
+
+.card-front{
+  background:#f7f7f7;
+  font-family:'Pacifico',cursive;
+  font-size:36px;
+  color:#ff8fb1;
+}
+
+.card-back{
+  background:white;
+  transform:rotateY(180deg);
+  font-size:13px;
+  color:#555;
+}
+
+/* note box */
+.note{
+  background:white;
+  border-radius:20px;
+  padding:22px;
+  max-width:360px;
+  box-shadow:0 0 25px rgba(255,170,200,.4);
+}
+</style>
+</head>
+
+<body>
+
+<script>
+for(let i=0;i<25;i++){
+  let d=document.createElement("div");
+  d.className="dot";
+  d.style.left=Math.random()*100+"vw";
+  d.style.animationDelay=Math.random()*10+"s";
+  document.body.appendChild(d);
+}
+</script>
+
+<!-- SCREEN 1 -->
+<div class="screen active" id="s1">
+  <h1>Just for TI moon 🌙</h1>
+  <p>This is something small, calm, and happy.</p>
+  <button onclick="go(2)">Tap gently</button>
+</div>
+
+<!-- SCREEN 2 -->
+<div class="screen" id="s2">
+  <h1>Hello, TI moon ✨</h1>
+  <p>
+Sometimes it’s nice to pause for a moment  
+and smile without any reason.
+  </p>
+  <button onclick="go(3)">Continue</button>
+</div>
+
+<!-- SCREEN 3 -->
+<div class="screen" id="s3">
+  <h1>Little things 🤍</h1>
+  <div class="cards">
+
+    <div class="card" onclick="flip(this)">
+      <div class="card-inner">
+        <div class="card-front">🌙</div>
+        <div class="card-back">Dear TI moon,<br>your presence feels calm and comforting.</div>
+      </div>
+    </div>
+
+    <div class="card" onclick="flip(this)">
+      <div class="card-inner">
+        <div class="card-front">✨</div>
+        <div class="card-back">Dear TI moon,<br>your smile carries a gentle warmth.</div>
+      </div>
+    </div>
+
+    <div class="card" onclick="flip(this)">
+      <div class="card-inner">
+        <div class="card-front">🌸</div>
+        <div class="card-back">Dear TI moon,<br>your kindness shows naturally.</div>
+      </div>
+    </div>
+
+    <div class="card" onclick="flip(this)">
+      <div class="card-inner">
+        <div class="card-front">💫</div>
+        <div class="card-back">Dear TI moon,<br>you make moments feel lighter.</div>
+      </div>
+    </div>
+
+  </div>
+  <button onclick="go(4)">One more thing</button>
+</div>
+
+<!-- SCREEN 4 -->
+<div class="screen" id="s4">
+  <div class="note">
+    <h1>Dear TI moon, 🤍</h1>
+    <p>
+This is just a simple reminder that  
+you are appreciated more than you know.  
+Your calm nature, gentle heart,  
+and positive energy make the world  
+feel a little nicer.
+
+I hope this brings a small smile  
+and a peaceful feeling today.
+    </p>
+    <button onclick="go(5)">Finish</button>
+  </div>
+</div>
+
+<!-- SCREEN 5 -->
+<div class="screen" id="s5">
+  <h1>Stay happy, TI moon 🌙</h1>
+  <p>That’s all. Nothing more. Nothing less.</p>
+</div>
+
+<script>
+function go(n){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('s'+n).classList.add('active');
+}
+function flip(c){
+  c.classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
